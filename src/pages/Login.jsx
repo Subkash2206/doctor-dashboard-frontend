@@ -12,6 +12,7 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
+console.log("✅ Login.jsx rendered");
 
     try {
       const res = await loginDoctor(doctorId, otp);
