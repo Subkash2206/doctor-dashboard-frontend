@@ -3,7 +3,7 @@ import axios from "axios";
 
 // ✅ Use deployed backend URL
 const API = axios.create({
-  baseURL: "https://doctor-dashboard-backend.onrender.com",
+  baseURL: "https://doctor-dashboard-backend-6583.onrender.com",
 });
 
 // Doctor login
