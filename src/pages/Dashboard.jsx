@@ -24,12 +24,18 @@ export default function Dashboard() {
     <div className="min-h-screen bg-gray-100 p-8">
       <h1 className="text-3xl font-bold mb-6 text-center">Patient Dashboard</h1>
 
-      <div className="text-right mb-4">
+      <div className="flex justify-end gap-4 mb-4">
         <a
           href="/add-patient"
           className="inline-block bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
         >
           + Add Patient
+        </a>
+        <a
+          href="/generate-prescription"
+          className="inline-block bg-indigo-600 text-white px-4 py-2 rounded hover:bg-indigo-700"
+        >
+          🔮 AI Prescription
         </a>
       </div>
 
