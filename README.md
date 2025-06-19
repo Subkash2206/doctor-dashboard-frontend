@@ -79,3 +79,34 @@ Includes support for AI endpoints using Hugging Face Inference API
 📦 Deployment
 Platform: Vercel
 Automatically redeploys on main push via GitHub.
+
+
+
+🔧 Functionality
+The AI-Powered Doctor Dashboard streamlines patient management and assists doctors with AI-generated recommendations. Key features include:
+
+👤 Doctor Login
+Simple OTP-based login (for prototype/demo purposes).
+
+Simulates doctor session without complex auth systems.
+
+🧾 Add & View Patients
+Doctors can add new patients with:
+
+Name, age, gender
+
+Symptoms, diagnosis, and history
+
+Patients are auto-assigned to a medical department using an AI model (based on symptoms).
+
+📋 Dashboard
+Displays all patients with essential information.
+
+Click into each patient for full details and AI features.
+
+🧠 AI-Powered Prescription Generator
+Uses Hugging Face's Mistral-7B-Instruct model to generate a treatment or prescription based on symptoms.
+
+Available via a separate page or directly in the patient profile.
+
+Sorted based off of the department and severity.
