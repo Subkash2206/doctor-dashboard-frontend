@@ -51,7 +51,7 @@ doctor-dashboard-frontend/
 
 All API requests hit:
 🔗 Live Backend: (https://doctor-dashboard-backend-6853.onrender.com)
-
+Swagger UI : (https://doctor-dashboard-backend-6853.onrender.com/docs#/)
 
 
 Make sure this is reflected in `src/api.js`.
