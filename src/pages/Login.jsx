@@ -1,7 +1,9 @@
-// src/pages/Login.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { loginDoctor } from "../api";
+
+// ✅ Confirm if component is rendering
+console.log("✅ Login.jsx rendered");
 
 export default function Login() {
   const [doctorId, setDoctorId] = useState("");
@@ -12,7 +14,9 @@ export default function Login() {
   const handleLogin = async (e) => {
     e.preventDefault();
     setError("");
-console.log("✅ Login.jsx rendered");
+
+    // ✅ Log the values being sent to backend
+    console.log("🟢 Logging in with:", { doctorId, otp });
 
     try {
       const res = await loginDoctor(doctorId, otp);
