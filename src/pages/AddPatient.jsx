@@ -1,3 +1,4 @@
+// src/pages/AddPatient.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { addPatient } from "../api";
@@ -12,7 +13,6 @@ export default function AddPatient() {
     symptoms: "",
     diagnosis: "",
     history: "",
-    assigned_department: "General",
   });
 
   const handleChange = (e) => {
@@ -23,7 +23,7 @@ export default function AddPatient() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await addPatient(formData);
+      await addPatient(formData); // ✅ No assigned_department sent
       navigate("/dashboard");
     } catch (err) {
       console.error("❌ Failed to add patient:", err.response?.data || err.message);
@@ -97,22 +97,9 @@ export default function AddPatient() {
           placeholder="Medical History"
           value={formData.history}
           onChange={handleChange}
-          className="w-full p-2 mb-3 border rounded"
+          className="w-full p-2 mb-4 border rounded"
           rows={3}
         ></textarea>
-
-        <select
-          name="assigned_department"
-          value={formData.assigned_department}
-          onChange={handleChange}
-          className="w-full p-2 mb-4 border rounded"
-        >
-          <option value="General">General</option>
-          <option value="Cardiology">Cardiology</option>
-          <option value="Neurology">Neurology</option>
-          <option value="Orthopedics">Orthopedics</option>
-          <option value="Psychiatry">Psychiatry</option>
-        </select>
 
         <button
           type="submit"
