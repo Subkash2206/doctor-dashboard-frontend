@@ -1,7 +1,7 @@
 // src/pages/AddPatient.jsx
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { addPatient } from "../api";
+import { addPatient, suggestDepartment } from "../api";
 
 export default function AddPatient() {
   const navigate = useNavigate();
@@ -14,6 +14,10 @@ export default function AddPatient() {
     diagnosis: "",
     history: "",
   });
+
+  const [aiDepartment, setAIDepartment] = useState("");
+  const [aiLoading, setAILoading] = useState(false);
+  const [aiError, setAIError] = useState("");
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -28,6 +32,20 @@ export default function AddPatient() {
     } catch (err) {
       console.error("❌ Failed to add patient:", err.response?.data || err.message);
       alert("Failed to add patient.");
+    }
+  };
+
+  const handleAIDepartment = async () => {
+    setAILoading(true);
+    setAIError("");
+    setAIDepartment("");
+    try {
+      const res = await suggestDepartment(formData.symptoms);
+      setAIDepartment(res.data.suggested_department);
+    } catch (err) {
+      setAIError("Failed to get AI suggestion.");
+    } finally {
+      setAILoading(false);
     }
   };
 
@@ -82,6 +100,23 @@ export default function AddPatient() {
           className="w-full p-2 mb-3 border rounded"
           required
         />
+
+        <button
+          type="button"
+          onClick={handleAIDepartment}
+          disabled={aiLoading || !formData.symptoms}
+          className="bg-green-600 text-white px-4 py-1 rounded mb-2"
+        >
+          {aiLoading ? "Getting AI Suggestion..." : "Suggest Department (AI)"}
+        </button>
+
+        {aiDepartment && (
+          <div className="mb-2 text-blue-700 font-semibold">
+            AI Suggests: {aiDepartment}
+          </div>
+        )}
+
+        {aiError && <div className="mb-2 text-red-500">{aiError}</div>}
 
         <input
           type="text"

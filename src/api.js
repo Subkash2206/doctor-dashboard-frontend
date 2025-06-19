@@ -13,4 +13,8 @@ export const fetchPatients = () => API.get("/patients");
 export const addPatient = (patient) => API.post("/patients", patient);
 export const generatePrescription = (symptoms) =>
   API.post("/prescription/ai", { symptoms });
+export const suggestDepartment = (symptoms) =>
+  API.post("/patients/suggest-department", { symptoms });
+export const deletePatient = (id) =>
+  API.delete(`/patients/${id}`);
 

@@ -7,19 +7,21 @@ export default function PrescriptionAI() {
   const [generated, setGenerated] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [department, setDepartment] = useState("");
   const navigate = useNavigate();
 
   const handleGenerate = async () => {
     setLoading(true);
     setError("");
     setGenerated("");
-
+    setDepartment("");
     try {
       const res = await generatePrescription(symptoms);
-      setGenerated(res.data.prescription || "No output returned.");
+      setGenerated(res.data.ai_prescription || "No prescription returned.");
+      setDepartment(res.data.suggested_department || "");
     } catch (err) {
-      console.error("❌ AI Error:", err.response?.data || err.message);
-      setError("Failed to generate prescription.");
+      const msg = err.response?.data?.detail || err.message;
+      setError("Failed to generate prescription: " + msg);
     } finally {
       setLoading(false);
     }
@@ -64,6 +66,11 @@ export default function PrescriptionAI() {
               Generated Prescription:
             </h2>
             <pre className="whitespace-pre-wrap text-gray-800">{generated}</pre>
+            {department && (
+              <div className="mt-4 text-blue-700 font-semibold">
+                Suggested Department: {department}
+              </div>
+            )}
           </div>
         )}
       </div>

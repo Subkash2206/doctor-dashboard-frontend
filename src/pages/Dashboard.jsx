@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { fetchPatients } from "../api";
+import { fetchPatients, deletePatient } from "../api";
 
 export default function Dashboard() {
   const [patients, setPatients] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [deleting, setDeleting] = useState(null);
+  const [deleteError, setDeleteError] = useState("");
 
   useEffect(() => {
     const loadPatients = async () => {
@@ -19,6 +21,19 @@ export default function Dashboard() {
 
     loadPatients();
   }, []);
+
+  const handleDelete = async (index) => {
+    setDeleting(index);
+    setDeleteError("");
+    try {
+      await deletePatient(index);
+      setPatients((prev) => prev.filter((_, i) => i !== index));
+    } catch (err) {
+      setDeleteError("Failed to delete patient.");
+    } finally {
+      setDeleting(null);
+    }
+  };
 
   return (
     <div className="min-h-screen bg-gray-100 p-8">
@@ -60,6 +75,16 @@ export default function Dashboard() {
               <p><strong>Gender:</strong> {patient.gender}</p>
               <p><strong>Symptoms:</strong> {patient.symptoms}</p>
               <p><strong>Assigned Dept:</strong> {patient.assigned_department}</p>
+              <button
+                onClick={() => handleDelete(index)}
+                disabled={deleting === index}
+                className="mt-2 bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700"
+              >
+                {deleting === index ? "Deleting..." : "Delete"}
+              </button>
+              {deleteError && deleting === index && (
+                <div className="text-red-500 mt-1">{deleteError}</div>
+              )}
             </div>
           ))}
         </div>
