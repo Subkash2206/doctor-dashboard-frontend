@@ -50,7 +50,8 @@ doctor-dashboard-frontend/
 ## 🌐 Backend API
 
 All API requests hit:
-https://doctor-dashboard-backend.onrender.com
+🔗 Live Backend: (https://doctor-dashboard-backend-6853.onrender.com)
+
 
 
 Make sure this is reflected in `src/api.js`.
