@@ -4,101 +4,122 @@ import { addPatient } from "../api";
 
 export default function AddPatient() {
   const navigate = useNavigate();
-  const [form, setForm] = useState({
+
+  const [formData, setFormData] = useState({
     name: "",
     age: "",
     gender: "Male",
     symptoms: "",
-    assigned_department: "General Medicine",
+    diagnosis: "",
+    history: "",
+    assigned_department: "General",
   });
-  const [error, setError] = useState("");
-  const [success, setSuccess] = useState(false);
 
   const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError("");
     try {
-      await addPatient(form);
-      setSuccess(true);
-      setTimeout(() => navigate("/dashboard"), 1000);
+      await addPatient(formData);
+      navigate("/dashboard");
     } catch (err) {
-      console.error("❌ Error adding patient:", err);
-      setError("Failed to add patient.");
+      console.error("❌ Failed to add patient:", err.response?.data || err.message);
+      alert("Failed to add patient.");
     }
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-gray-900 text-white px-4">
-      <h1 className="text-3xl font-bold mb-6">Add New Patient</h1>
-
+    <div className="min-h-screen bg-gray-100 flex items-center justify-center p-6">
       <form
         onSubmit={handleSubmit}
-        className="bg-gray-800 p-6 rounded shadow-md w-full max-w-md"
+        className="bg-white shadow-md rounded px-8 pt-6 pb-8 w-full max-w-md"
       >
+        <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">
+          Add Patient
+        </h2>
+
         <input
           type="text"
           name="name"
-          placeholder="Patient Name"
-          value={form.name}
+          placeholder="Name"
+          value={formData.name}
           onChange={handleChange}
-          className="p-2 mb-3 w-full text-black rounded"
+          className="w-full p-2 mb-3 border rounded"
           required
         />
+
         <input
           type="number"
           name="age"
           placeholder="Age"
-          value={form.age}
+          value={formData.age}
           onChange={handleChange}
-          className="p-2 mb-3 w-full text-black rounded"
+          className="w-full p-2 mb-3 border rounded"
           required
         />
+
         <select
           name="gender"
-          value={form.gender}
+          value={formData.gender}
           onChange={handleChange}
-          className="p-2 mb-3 w-full text-black rounded"
+          className="w-full p-2 mb-3 border rounded"
+          required
         >
-          <option>Male</option>
-          <option>Female</option>
-          <option>Other</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
         </select>
-        <textarea
+
+        <input
+          type="text"
           name="symptoms"
           placeholder="Symptoms"
-          value={form.symptoms}
+          value={formData.symptoms}
           onChange={handleChange}
-          className="p-2 mb-3 w-full text-black rounded"
+          className="w-full p-2 mb-3 border rounded"
           required
         />
+
+        <input
+          type="text"
+          name="diagnosis"
+          placeholder="Diagnosis"
+          value={formData.diagnosis}
+          onChange={handleChange}
+          className="w-full p-2 mb-3 border rounded"
+        />
+
+        <textarea
+          name="history"
+          placeholder="Medical History"
+          value={formData.history}
+          onChange={handleChange}
+          className="w-full p-2 mb-3 border rounded"
+          rows={3}
+        ></textarea>
+
         <select
           name="assigned_department"
-          value={form.assigned_department}
+          value={formData.assigned_department}
           onChange={handleChange}
-          className="p-2 mb-4 w-full text-black rounded"
+          className="w-full p-2 mb-4 border rounded"
         >
-          <option>General Medicine</option>
-          <option>Cardiology</option>
-          <option>Neurology</option>
-          <option>Pediatrics</option>
-          <option>Oncology</option>
+          <option value="General">General</option>
+          <option value="Cardiology">Cardiology</option>
+          <option value="Neurology">Neurology</option>
+          <option value="Orthopedics">Orthopedics</option>
+          <option value="Psychiatry">Psychiatry</option>
         </select>
 
         <button
           type="submit"
-          className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded w-full"
+          className="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-full"
         >
           Add Patient
         </button>
-
-        {success && (
-          <p className="text-green-400 mt-4 text-center">Patient added!</p>
-        )}
-        {error && <p className="text-red-400 mt-4 text-center">{error}</p>}
       </form>
     </div>
   );
