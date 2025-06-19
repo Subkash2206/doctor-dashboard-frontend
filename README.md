@@ -12,11 +12,11 @@ This is the **React frontend** for the AI-Powered Doctor Dashboard — a smart s
 
 ## 🌟 Features
 
-- 👨‍⚕️ **Doctor Login** (via ID + mock OTP)
-- 👥 **Patient Dashboard** – view & add patients
-- 🤖 **AI Prescription Generator** – powered by LLM
-- 💅 **Responsive Design** – Tailwind CSS
-- 🔌 **Live API integration** with FastAPI backend
+-  **Doctor Login** (via ID + mock OTP)
+-  **Patient Dashboard** – view & add patients
+-  **AI Prescription Generator** – powered by LLM
+-  **Responsive Design** – Tailwind CSS
+-  **Live API integration** with FastAPI backend
 
 ---
 
@@ -64,8 +64,18 @@ Make sure this is reflected in `src/api.js`.
 npm install
 npm start
 ```
+🛠 Hosting & Deployment
+Frontend: React app (planned for Vercel/Netlify or hosted locally)
 
+Backend: FastAPI server deployed on Render
+
+Includes support for AI endpoints using Hugging Face Inference API
+
+🔗 Backend API: https://doctor-dashboard-backend.onrender.com
+
+
+🧠 AI: Hugging Face Inference API (Mistral 7B)
+🚀 Deployment: Render (backend)
 📦 Deployment
 Platform: Vercel
-
 Automatically redeploys on main push via GitHub.
