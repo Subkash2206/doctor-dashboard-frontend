@@ -1,16 +1,16 @@
-# 🩺 AI-Powered Doctor Dashboard – Frontend
+#  AI-Powered Doctor Dashboard – Frontend
 
 This is the **React frontend** for the AI-Powered Doctor Dashboard — a smart system that allows doctors to manage patient data and generate prescriptions using AI.
 
 ---
 
-## 🔗 Live URL
+##  Live URL
 
-👉 [https://doctor-dashboard-frontend.vercel.app](https://doctor-dashboard-frontend.vercel.app)
+ [https://doctor-dashboard-frontend.vercel.app](https://doctor-dashboard-frontend.vercel.app)
 
 ---
 
-## 🌟 Features
+##  Features
 
 -  **Doctor Login** (via ID + mock OTP)
 -  **Patient Dashboard** – view & add patients
@@ -20,7 +20,7 @@ This is the **React frontend** for the AI-Powered Doctor Dashboard — a smart s
 
 ---
 
-## 🔧 Tech Stack
+##  Tech Stack
 
 - **Frontend:** React
 - **Styling:** Tailwind CSS
@@ -30,11 +30,11 @@ This is the **React frontend** for the AI-Powered Doctor Dashboard — a smart s
 
 ---
 
-## ⚙️ Project Structure
+##  Project Structure
 ```bash
 doctor-dashboard-frontend/
 ├── public/
-├── src/
+├── src
 │ ├── pages/ # Dashboard, Login, AddPatient, etc.
 │ ├── api.js # Axios calls to backend
 │ ├── App.js # App routes
@@ -47,10 +47,10 @@ doctor-dashboard-frontend/
 
 ---
 
-## 🌐 Backend API
+##  Backend API
 
 All API requests hit:
-🔗 Live Backend: (https://doctor-dashboard-backend-6853.onrender.com)
+Live Backend: (https://doctor-dashboard-backend-6853.onrender.com)
 Swagger UI : (https://doctor-dashboard-backend-6853.onrender.com/docs#/)
 
 
@@ -58,39 +58,39 @@ Make sure this is reflected in `src/api.js`.
 
 ---
 
-## 🖥️ Local Development
+## Local Development
 
 ```bash
 npm install
 npm start
 ```
-🛠 Hosting & Deployment
+Hosting & Deployment
 Frontend: React app (planned for Vercel/Netlify or hosted locally)
 
 Backend: FastAPI server deployed on Render
 
 Includes support for AI endpoints using Hugging Face Inference API
 
-🔗 Backend API: https://doctor-dashboard-backend.onrender.com
+Backend API: https://doctor-dashboard-backend.onrender.com
 
 
-🧠 AI: Hugging Face Inference API (Mistral 7B)
-🚀 Deployment: Render (backend)
-📦 Deployment
+AI: Hugging Face Inference API (Mistral 7B)
+Deployment: Render (backend)
+Deployment
 Platform: Vercel
 Automatically redeploys on main push via GitHub.
 
 
 
-🔧 Functionality
+Functionality
 The AI-Powered Doctor Dashboard streamlines patient management and assists doctors with AI-generated recommendations. Key features include:
 
-👤 Doctor Login
+Doctor Login
 Simple OTP-based login (for prototype/demo purposes).
 
 Simulates doctor session without complex auth systems.
 
-🧾 Add & View Patients
+Add & View Patients
 Doctors can add new patients with:
 
 Name, age, gender
@@ -99,12 +99,12 @@ Symptoms, diagnosis, and history
 
 Patients are auto-assigned to a medical department using an AI model (based on symptoms).
 
-📋 Dashboard
+Dashboard
 Displays all patients with essential information.
 
 Click into each patient for full details and AI features.
 
-🧠 AI-Powered Prescription Generator
+AI-Powered Prescription Generator
 Uses Hugging Face's Mistral-7B-Instruct model to generate a treatment or prescription based on symptoms.
 
 Available via a separate page or directly in the patient profile.
